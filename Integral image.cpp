@@ -4,9 +4,12 @@
 #include <algorithm>
 
 void intarr(std::vector< std::vector <int> >& p, size_t nr, size_t nc) {
-	for (size_t r = 1; r < nr; ++r) {
-		for (size_t c = 1; c < nc; ++c) {
-			p[r][c] = p[r][c]-p[r-1][c-1]+ p[r][c-1] + p[r-1][c];
+	for (size_t r = 0; r < nr; ++r) {
+		for (size_t c = 0; c < nc; ++c) {
+			if ((r == 0) & (c == 0)) { continue; }
+			else if (r == 0) { p[r][c] = p[r][c] + p[r][c - 1]; }
+			else if(c == 0){ p[r][c] = p[r][c] + p[r - 1][c]; }
+			else { p[r][c] = p[r][c] - p[r - 1][c - 1] + p[r][c - 1] + p[r - 1][c]; }
 		}
 	}
 	for (size_t r = 0; r < nr; ++r) {
