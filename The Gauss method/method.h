@@ -17,7 +17,6 @@ template<typename T> void method(T** ar, size_t r, size_t c) {
 		if (bam < r-1 && bam < c-1) { ++bam; }
 		else { break; }
 	}
-	std::cout << std::endl;
 }
 
 bool tests() {
