@@ -1,6 +1,5 @@
 #pragma once
 #include <cassert>
-#include <vector>
 template<typename T> void method(T** ar, size_t r, size_t c) {
 	for (size_t k = 0, bam=0; k < c; ++k) {
 		for (size_t i = bam+1; i < r; ++i) {
@@ -17,7 +16,6 @@ template<typename T> void method(T** ar, size_t r, size_t c) {
 		if (bam < r-1 && bam < c-1) { ++bam; }
 		else { break; }
 	}
-	std::cout << std::endl;
 }
 
 bool tests() {
