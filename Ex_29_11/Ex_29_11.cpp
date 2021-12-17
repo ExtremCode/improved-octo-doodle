@@ -1,6 +1,6 @@
 ﻿#include <iostream>
+#include <vector>
 #include <fstream>
-#include <vector> 
 
 
 int main(int argc, char* argv[])
