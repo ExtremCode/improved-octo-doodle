@@ -85,4 +85,7 @@ int main() {
 			std::cout << m[r][c] << ' ';
 		}std::cout << std::endl;
 	}*/
+	for(size_t i=0;i<nr;++i)
+		delete[] m[i];
+	delete[] m;
 }
