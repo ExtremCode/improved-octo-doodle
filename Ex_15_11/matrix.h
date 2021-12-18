@@ -2,12 +2,12 @@
 #include <iostream>
 
 template<typename T> void matrixE(T** arr, size_t nr, size_t nc) {
-	if (nr > nc) { nr = nc; }
-	for (size_t r = 0; r < nr; ++r) {
-		if (nr != nc) { break; }
-		for (size_t c = 0; c < nc; ++c) {
-			if (r == c) { arr[r][c] = 1; }
-			else { arr[r][c] = 0; }
+	if(nr==nc){
+		for (size_t r = 0; r < nr; ++r) {
+			for (size_t c = 0; c < nc; ++c) {
+				if (r == c) { arr[r][c] = 1; }
+				else { arr[r][c] = 0; }
+			}
 		}
 	}
 }
