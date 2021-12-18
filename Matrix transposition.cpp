@@ -2,7 +2,7 @@
 #include <vector>
 #include <time.h>
 
-void trm(std::vector< std::vector <int> > & p, size_t nr, size_t nc) {
+void transp_mat_indep(std::vector< std::vector <int> > & p, size_t nr, size_t nc) {
 	std::vector<std::vector <int>> nw(nc,std::vector<int> (nr,0));
 	for (size_t r = 0; r < nr; ++r) {
 		for (size_t c = 0; c < nc; ++c) {
@@ -10,6 +10,15 @@ void trm(std::vector< std::vector <int> > & p, size_t nr, size_t nc) {
 		}
 	}
 	p = nw;
+}
+int* transp_mat_depend(int *p, size_t nr, size_t nc) {
+	int* nw = new int[nr * nc];
+	for (size_t r = 0; r < nr; ++r) {
+		for (size_t c = 0; c < nc; ++c) {
+			nw[c * nr + r] = p[r * nc + c];
+		}
+	}
+	return nw;
 }
 
 int main()
@@ -30,7 +39,7 @@ int main()
 		}
 		std::cout << std::endl;
 	}
-	trm(arr, r, c);
+	transp_mat_indep(arr, r, c);
 	std::cout << "Transoposed matrix " << std::endl;
 	for (int i = 0; i < c; ++i) {
 		for (int j = 0; j < r; ++j) {
