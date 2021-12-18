@@ -29,6 +29,6 @@ int main()
 		delete[] arrpl[j];
 	}
 	delete[] arrpl;
-	int** zavisim = new int* [r * c];
+	int* zavisim = new int[r * c];
 	delete[] zavisim;
 }
