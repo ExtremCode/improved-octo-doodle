@@ -15,13 +15,13 @@ template<typename T> void matrixE(T** arr, size_t nr, size_t nc) {
 template<typename T> void matrix180(T** a, size_t nr, size_t nc) {
 	for (size_t r = 0; r < nr; ++r) {
 		for (size_t c = 0, j = nc - 1; c <= j; ++c, --j) {
-			int tmp = a[r][c];
+			T tmp = a[r][c];
 			a[r][c] = a[r][j];
 			a[r][j] = tmp;
 		}
 	}
 	for (size_t r = 0, j = nr - 1; r <= j; ++r, --j) {
-		int* tmp = a[r];
+		T* tmp = a[r];
 		a[r] = a[j];
 		a[j] = tmp;
 	}
@@ -36,10 +36,10 @@ template<typename T> void matrix_num(T** arr, size_t nr, size_t nc, int num) {
 	}
 }
 
-template<typename T> int** mat_plus(T** ar, T** m, size_t nr1, size_t nc1, size_t nr2, size_t nc2) {
-	int** nw = new int* [nr1];
+template<typename T> T** mat_plus(T** ar, T** m, size_t nr1, size_t nc1, size_t nr2, size_t nc2) {
+	T** nw = new T* [nr1];
 	for (size_t i = 0; i < nr1; ++i) {
-		nw[i] = new int[nc1];
+		nw[i] = new T[nc1];
 	}
 	if (nr1 != nr2 || nc1 != nc2) {
 		for (size_t r = 0; r < nr1; ++r) {
@@ -49,18 +49,20 @@ template<typename T> int** mat_plus(T** ar, T** m, size_t nr1, size_t nc1, size_
 		}
 		return nw;
 	}
-	for (size_t r = 0; r < nr1; ++r) {
-		for (size_t c = 0; c < nc1; ++c) {
-			nw[r][c] = ar[r][c] + m[r][c];
+	else {
+		for (size_t r = 0; r < nr1; ++r) {
+			for (size_t c = 0; c < nc1; ++c) {
+				nw[r][c] = ar[r][c] + m[r][c];
+			}
 		}
 	}
 	return nw;
 }
 
-template<typename T> int** mat_mult(T** ar, size_t nr1, size_t nc1, T** mas, size_t nr2, size_t nc2) {
-	int** nw = new int* [nr1];
+template<typename T> T** mat_mult(T** ar, size_t nr1, size_t nc1, T** mas, size_t nr2, size_t nc2) {
+	T** nw = new T* [nr1];
 	for (size_t i = 0; i < nr1; ++i) {
-		nw[i] = new int[nc2];
+		nw[i] = new T[nc2];
 	}
 	if (nc1 != nr2) {
 		for (size_t r = 0; r < nr1; ++r) {
@@ -87,14 +89,14 @@ template<typename T> int** mat_mult(T** ar, size_t nr1, size_t nc1, T** mas, siz
 
 template<typename T> void change_el(T** ar, size_t r, size_t c,size_t num1, size_t num2, std::string what) {
 	if (what == "rows") {
-		int* tmp = new int [c];
+		T* tmp = new T [c];
 		tmp = ar[num1];
 		ar[num1] = ar[num2];
 		ar[num2] = tmp;
 	}
 	else if (what == "colunms") {
 		for (size_t i = 0; i < r; ++i) {
-			int tmp = ar[i][num1];
+			T tmp = ar[i][num1];
 			ar[i][num1] = ar[i][num2];
 			ar[i][num2] = tmp;
 		}
@@ -110,8 +112,8 @@ template<typename T> void number_mult_mat(T** ar, size_t r, size_t c, int num) {
 }
 
 template<typename T> bool test_matE(T** arr) {
-	int m[5][5] = { { 1,0,0,0,0 },{ 0, 1, 0, 0, 0,}, {0,0,1,0,0} , {0,0,0,1,0},{0,0,0,0,1} };
-	int num = 5;
+	T m[5][5] = { { 1,0,0,0,0 },{ 0, 1, 0, 0, 0,}, {0,0,1,0,0} , {0,0,0,1,0},{0,0,0,0,1} };
+	T num = 5;
 	for (size_t r = 0; r < 5; ++r) {
 		for (size_t c = 0; c < 5; ++c) {
 			arr[r][c] = num;
