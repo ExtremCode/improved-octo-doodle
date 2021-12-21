@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-template<typename T> void matrixE(T** arr, size_t nr, size_t nc) {
+template<typename T> void matrixE_indep(T** arr, size_t nr, size_t nc) {
 	if(nr==nc){
 		for (size_t r = 0; r < nr; ++r) {
 			for (size_t c = 0; c < nc; ++c) {
@@ -12,7 +12,7 @@ template<typename T> void matrixE(T** arr, size_t nr, size_t nc) {
 	}
 }
 
-template<typename T> void matrix180(T** a, size_t nr, size_t nc) {
+template<typename T> void matrix180_indep(T** a, size_t nr, size_t nc) {
 	for (size_t r = 0; r < nr; ++r) {
 		for (size_t c = 0, j = nc - 1; c <= j; ++c, --j) {
 			T tmp = a[r][c];
@@ -27,7 +27,24 @@ template<typename T> void matrix180(T** a, size_t nr, size_t nc) {
 	}
 }
 
-template<typename T> void matrix_num(T** arr, size_t nr, size_t nc, int num) {
+template<typename T> void matrix180_depen(T* a, size_t nr, size_t nc) {
+	for (size_t r = 0; r < nr; ++r) {
+		for (size_t c = 0, j = nc - 1; c <= j; ++c, --j) {
+			T tmp = a[r*nc+c];
+			a[r*nc+c] = a[r*nc+j];
+			a[r*nc+j] = tmp;
+		}
+	}
+
+	for (size_t r = 0, j = nr - 1; r <= j; ++r, --j) {
+		T* tmp = new T[nc];
+		for (size_t i = 0; i < nc; ++i) {
+			std::swap(a[r * nc + i], a[j * nc + i]);
+		}
+	}
+}
+
+template<typename T> void matrix_num_indep(T** arr, size_t nr, size_t nc, int num) {
 	for (size_t r = 0; r < nr; ++r) {
 		for (size_t c = 0; c < nc; ++c) {
 			arr[r][c] = num;
@@ -36,7 +53,7 @@ template<typename T> void matrix_num(T** arr, size_t nr, size_t nc, int num) {
 	}
 }
 
-template<typename T> T** mat_plus(T** ar, T** m, size_t nr1, size_t nc1, size_t nr2, size_t nc2) {
+template<typename T> T** mat_plus_indep(T** ar, T** m, size_t nr1, size_t nc1, size_t nr2, size_t nc2) {
 	T** nw = new T* [nr1];
 	for (size_t i = 0; i < nr1; ++i) {
 		nw[i] = new T[nc1];
@@ -59,7 +76,7 @@ template<typename T> T** mat_plus(T** ar, T** m, size_t nr1, size_t nc1, size_t 
 	return nw;
 }
 
-template<typename T> T** mat_mult(T** ar, size_t nr1, size_t nc1, T** mas, size_t nr2, size_t nc2) {
+template<typename T> T** mat_mult_indep(T** ar, size_t nr1, size_t nc1, T** mas, size_t nr2, size_t nc2) {
 	T** nw = new T* [nr1];
 	for (size_t i = 0; i < nr1; ++i) {
 		nw[i] = new T[nc2];
@@ -87,7 +104,7 @@ template<typename T> T** mat_mult(T** ar, size_t nr1, size_t nc1, T** mas, size_
 	return nw;
 }
 
-template<typename T> void change_el(T** ar, size_t r, size_t c,size_t num1, size_t num2, std::string what) {
+template<typename T> void change_el_indep(T** ar, size_t r, size_t c,size_t num1, size_t num2, std::string what) {
 	if (what == "rows") {
 		T* tmp = new T [c];
 		tmp = ar[num1];
@@ -103,7 +120,7 @@ template<typename T> void change_el(T** ar, size_t r, size_t c,size_t num1, size
 	}
 }
 
-template<typename T> void number_mult_mat(T** ar, size_t r, size_t c, int num) {
+template<typename T> void number_mult_mat_indep(T** ar, size_t r, size_t c, int num) {
 	for (size_t i = 0; i < r; ++i) {
 		for (size_t j = 0; j < c; ++j) {
 			ar[i][j] *= num;
@@ -111,7 +128,7 @@ template<typename T> void number_mult_mat(T** ar, size_t r, size_t c, int num) {
 	}
 }
 
-template<typename T> bool test_matE(T** arr) {
+template<typename T> bool test_matE_indep(T** arr) {
 	T m[5][5] = { { 1,0,0,0,0 },{ 0, 1, 0, 0, 0,}, {0,0,1,0,0} , {0,0,0,1,0},{0,0,0,0,1} };
 	T num = 5;
 	for (size_t r = 0; r < 5; ++r) {
@@ -159,7 +176,7 @@ template<typename T> bool test_matE(T** arr) {
 	return true;
 }
 
-bool test_mat_mult() {
+bool test_mat_mult_indep() {
 	int** a = new int* [2];
 	int num = 1;
 	for (size_t i = 0; i < 2; ++i) {
@@ -195,7 +212,7 @@ bool test_mat_mult() {
 	return true;
 }
 
-bool test_mat_num()
+bool test_mat_num_indep()
 {
 	for (int num = 1; num < 30; ++num) {
 		int** arr = new int* [5];
