@@ -1,4 +1,3 @@
-﻿#include <iostream>
 #include "matrix.h"
 
 int main()
@@ -20,7 +19,7 @@ int main()
 			arrpl[nr][nc] = rand() % 10;
 		}
 	}
-	matplval = mat_plus(arr, arrpl, r, c, r, c);
+	matplval = mat_plus_indep(arr, arrpl, r, c, r, c);
 	for (size_t j = 0; j < r; ++j) {
 		delete[] arr[j];
 	}
