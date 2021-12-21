@@ -33,7 +33,7 @@ template<typename T> T det_mat_indep(T** m, size_t r) {
 	return result;
 }
 
-bool tests_det() {
+bool tests_det_indep() {
 	size_t r = 4;
 	double** mas = new double* [r];
 	for (size_t i = 0,num=1; i < r; ++i,++num) {
