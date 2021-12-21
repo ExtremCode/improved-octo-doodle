@@ -1,5 +1,5 @@
 #pragma once
-void method(double** ar, size_t r, size_t c) {
+void method_straight_indep(double** ar, size_t r, size_t c) {
 	for (size_t k = 0, bam = 0; k < c; ++k) {
 		for (size_t i = bam + 1; i < r; ++i) {
 			if (ar[i][k] == 0) {
@@ -16,7 +16,7 @@ void method(double** ar, size_t r, size_t c) {
 		else { break; }
 	}
 }
-template<typename T> T det_mat(T** m, size_t r) {
+template<typename T> T det_mat_indep(T** m, size_t r) {
 	T result = 1;
 	if (r == 2) { result = m[0][0] * m[1][1] - m[0][1] * m[1][0]; return result; }
 	else if (r == 3) {
@@ -42,7 +42,7 @@ bool tests_det() {
 			mas[i][j] = num;
 		}
 	}
-	if (0 != det_mat(mas, r)) { return false; }
+	if (0 != det_mat_indep(mas, r)) { return false; }
 
 	r = 2;
 	mas = new double* [r];
@@ -50,7 +50,7 @@ bool tests_det() {
 		mas[i] = new double[r];
 	}
 	mas[0][0] = 23; mas[0][1] = 0; mas[1][0] = 13; mas[1][1] = 7;
-	if (161 != det_mat(mas, r)) { return false; }
+	if (161 != det_mat_indep(mas, r)) { return false; }
 
 	r = 3;
 	mas = new double* [r];
@@ -60,7 +60,7 @@ bool tests_det() {
 			mas[i][j] = num;
 		}
 	}
-	if (0 != det_mat(mas, r)) { return false; }
+	if (0 != det_mat_indep(mas, r)) { return false; }
 
 	for (size_t i = 0; i < r; ++i) {
 		delete[] mas[i];
