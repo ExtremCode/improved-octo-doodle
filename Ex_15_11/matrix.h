@@ -209,6 +209,15 @@ bool test_mat_mult_indep() {
 			if (f[nr][nc] != t[nr][nc]) { return false; }
 		}
 	}
+	for (size_t i = 0; i < 2; ++i) {
+		delete[] t[i];
+	}delete[] t;
+	for (size_t i = 0; i < 2; ++i) {
+		delete[] a[i];
+	}delete[] a;
+	for (size_t i = 0; i < 3; ++i) {
+		delete[] b[i];
+	}delete[] b;
 	return true;
 }
 
