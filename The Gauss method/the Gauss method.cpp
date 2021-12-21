@@ -1,4 +1,3 @@
-﻿#include <iostream>
 #include "method.h"
 
 int main()
@@ -12,7 +11,7 @@ int main()
             arr[i][j] = rand() % 23;
         }
     }
-    tests();
+    std::cout<<test_indep_method();
     for (size_t i = 0; i < r; ++i) {
         delete[] arr[i];
     }
