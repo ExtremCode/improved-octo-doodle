@@ -19,7 +19,7 @@ int main()
 			arrpl[nr][nc] = rand() % 10;
 		}
 	}
-	matplval = mat_plus_indep(arr, arrpl, r, c, r, c);
+	matplval = mat_plus_mat_indep(arr, arrpl, r, c, r, c);
 	for (size_t j = 0; j < r; ++j) {
 		delete[] arr[j];
 	}
@@ -28,6 +28,6 @@ int main()
 		delete[] arrpl[j];
 	}
 	delete[] arrpl;
-	int* zavisim = new int[r * c];
-	delete[] zavisim;
+	int* depend = new int[r * c];
+	delete[] depend;
 }
