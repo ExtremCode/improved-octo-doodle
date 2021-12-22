@@ -11,8 +11,22 @@ void transp_mat_indep(std::vector< std::vector <int> > & p, size_t nr, size_t nc
 	}
 	p = nw;
 }
-int* transp_mat_depend(int *p, size_t nr, size_t nc) {
-	int* nw = new int[nr * nc];
+
+template <typename T> T** transp_mat_indep(T** p, size_t nr, size_t nc) {
+	T** nw = new T*[nc];
+	for (size_t c = 0; c < nc; ++c) {
+		nw[c] = new T[nr];
+	}
+	for (size_t r = 0; r < nr; ++r) {
+		for (size_t c = 0; c < nc; ++c) {
+			nw[c][r] = p[r][c];
+		}
+	}
+	return nw;
+}
+
+template <typename T> T* transp_mat_depend(T* p, size_t nr, size_t nc) {
+	T* nw = new T[nr * nc];
 	for (size_t r = 0; r < nr; ++r) {
 		for (size_t c = 0; c < nc; ++c) {
 			nw[c * nr + r] = p[r * nc + c];
