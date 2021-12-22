@@ -1,6 +1,11 @@
 #pragma once
 #include <iostream>
 
+template <typename T> T& link_return_depen(T* ar, size_t r, size_t c,size_t nc) {
+	T &pp = ar[r * nc + c];
+	return pp;
+}
+
 template<typename T> void matrixE_indep(T** arr, size_t nr, size_t nc) {
 	if(nr==nc){
 		for (size_t r = 0; r < nr; ++r) {
