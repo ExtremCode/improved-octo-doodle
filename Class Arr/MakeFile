@@ -1,0 +1,23 @@
+SOURCES=Ex_14_03.cpp Arr.cpp stdafx.cpp
+# файлы исходного кода
+OBJSCPP=$(SOURCES:.cpp=.obj)
+# объектные файлы из файлов исходного кода
+# OBJS=$(OBJSCPP:.cpp=.obj)
+
+all: $(OBJSCPP)
+# Ex_14_03.obj Arr.obj stdafx.obj	cl Ex_14_03.obj Arr.obj stdafx.obj /Fe: Stop.exe 
+	cl $? /Fe: Stop.exe
+.cpp.obj: 
+	cl $<  /EHsc /c /Fo $@
+# /EHsc для отлова исключений
+# .obj: Arr.cpp стало ненужным из-за верхних строк, которые это обрабатывают
+#	cl $<  /c /Fo $@
+# Ex_14_03.obj: Ex_14_03.cpp
+#	cl $<  /c /Fo $@ то же самое
+# .cc.obj:
+#	cl S< /c /Fo $@ для .сс файлов
+clean: 
+	del $(OBJSCPP) *.exe
+# *.obj *.exe
+test: 
+	Stop.exe
