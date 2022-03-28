@@ -40,7 +40,7 @@ public:
 	T& getElement(const size_t) const;
 	inline size_t getSize() const;
 	void addElement(const T);
-	void Resize_arr(const size_t);
+	void Resize_arr(const int);
 	T* getMarker() {
 		return mark.getM_Mark();
 	}
@@ -125,10 +125,9 @@ void Arr<T>::addElement(const T elem) {
 	/*for (size_t i = 0; i < m_size; ++i) {
 		tmp[i]= m_storage[i];
 	}*/
-	size_t k = 0;
 	mark.rewind();
 	while (mark.canMove2next()) {
-		tmp[k] = mark.getcur_val();
+		tmp[mark.getM_Mark() - m_storage] = mark.getcur_val();
 		mark.move2next();
 	}
 	mark.rewind();
@@ -139,23 +138,22 @@ void Arr<T>::addElement(const T elem) {
 }
 
 template <typename T>
-void Arr<T>::Resize_arr(const size_t new_size) {
-	if (new_size > m_size) throw BadSize();
+void Arr<T>::Resize_arr(const int new_size) {
+	if (new_size < 0) throw BadSize();
 	if (new_size == 0) {
 		m_storage = nullptr;
 		m_size = 0;
 		mark.setSize(m_size);
 		mark.setData(m_storage);
 	}
-	else {
+	if(new_size != m_size) {
 		T* tmp = new T[new_size];
 		/*for (size_t i = 0; i < m_size; ++i) {
 			tmp[i] = m_storage[i];
 		}*/
 		mark.rewind();
-		size_t k = 0;
-		while (mark.canMove2next() && k < new_size) {
-			tmp[k] = mark.getcur_val();
+		while (mark.canMove2next()) {
+			tmp[mark.getM_Mark() - m_storage] = mark.getcur_val();
 			mark.move2next();
 		}
 		mark.rewind();

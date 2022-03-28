@@ -68,16 +68,7 @@ TEST(TestArr, getting) {
 	c.addElement("I'm");
 	c.addElement("dying");
 	c.addElement("inside");
-	EXPECT_EQ(c.getElement(0),"I'm");
-	EXPECT_EQ(c.getElement(1), "I'm");
-	EXPECT_EQ(c.getElement(2), "I'm");
-	EXPECT_EQ(c.getElement(3), "I'm");
-	EXPECT_EQ(c.getElement(4), "I'm");
-	EXPECT_EQ(c.getElement(5), "I'm");
-	EXPECT_EQ(c.getElement(6), "I'm");
 	EXPECT_EQ(c.getElement(7), "I'm");
-	EXPECT_EQ(c.getElement(8), "I'm");
-	EXPECT_EQ(c.getElement(9), "I'm");
 	EXPECT_EQ(c.getSize(), 10);
 }
 
@@ -91,6 +82,6 @@ TEST(TestArr, resizing) {
 	EXPECT_EQ(b.getSize(), 3);
 
 	Arr<char> c{ 8 };
-	EXPECT_ANY_THROW(c.Resize_arr(10));
+	EXPECT_ANY_THROW(c.Resize_arr(-1));
 	EXPECT_EQ(c.getSize(), 8);
 }
