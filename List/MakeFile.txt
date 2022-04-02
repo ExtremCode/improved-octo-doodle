@@ -1,0 +1,14 @@
+SOURCES=List.cpp
+OBJSCPP=$(SOURCES:.cpp=.obj)
+
+all: $(OBJSCPP)
+	cl $? /Fe: Final.exe
+
+.cpp.obj:
+	cl $< /EHsc /c /Fo $@
+
+clean:
+	del *.obj *.exe
+
+test:
+	Final.exe
